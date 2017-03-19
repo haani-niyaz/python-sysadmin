@@ -6,6 +6,18 @@ class Dirswalk(object):
 	def __init__(self,path):
 		self.path = path
 
+	@property
+	def path(self):
+		return self._path
+
+	@path.setter
+	def path(self, value):
+
+		if	os.path.exists(value):
+			self._path = value
+		else:
+			raise Exception("{} is not a valid path".format(value))
+			
 
 	def walkpaths(self):
 		"""Return the path to all the files in a directory recursively"""
@@ -18,7 +30,6 @@ class Dirswalk(object):
 				path_collection.append(full_path)
 
 		return path_collection
-
 
 
 	def walkfiles(self):
@@ -41,7 +52,6 @@ class Dirswalk(object):
 				dir_collection.append(dirname)
 
 		return dir_collection
-
 
 
 if __name__ == '__main__':
